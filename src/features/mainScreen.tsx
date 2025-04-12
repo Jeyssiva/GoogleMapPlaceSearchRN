@@ -77,9 +77,8 @@ const MainScreen = () => {
       },
     );
 
-    const location = details.data.result.geometry.location;
-    const name = details.data.result.name;
-    const address = details.data.result.formatted_address;
+    const {name, formatted_address: address, geometry} = details.data.result;
+    const {location} = geometry;
 
     const place = {place_id: item.place_id, name, address, location};
     const ifExistPlace = history.find(h => h.place_id === place.place_id);
@@ -197,15 +196,6 @@ const MainScreen = () => {
 
 const styles = StyleSheet.create({
   container: {flex: 1, padding: 10},
-  // input: {
-  //   height: 50,
-  //   borderColor: '#ccc',
-  //   borderWidth: 1,
-  //   // paddingHorizontal: 10,
-  //   borderRadius: 5,
-  //   marginBottom: 10,
-  //   marginTop: 5
-  // },
   item: {
     padding: 10,
     borderBottomWidth: 1,
