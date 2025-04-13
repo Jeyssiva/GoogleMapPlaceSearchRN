@@ -220,6 +220,14 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release {
+            if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE')) {
+                storeFile file(MYAPP_UPLOAD_STORE_FILE)
+                storePassword MYAPP_UPLOAD_STORE_PASSWORD
+                keyAlias MYAPP_UPLOAD_KEY_ALIAS
+                keyPassword MYAPP_UPLOAD_KEY_PASSWORD
+            }
+        }
     }
     buildTypes {
         debug {
@@ -228,7 +236,7 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
@@ -247,8 +255,20 @@ android {
                         defaultConfig.versionCode * 1000 + versionCodes.get(abi)
             }
 
+             // Customize APK file name
+            def appName = "GMapPlace" // Replace with your app's name
+            def versionName = variant.versionName
+            def buildType = variant.buildType.name
+            def date = new Date().format("yyMMdd")
+            def buildIndicator = buildType == "release" ? "R" : "T"
+            // def apkName = "${appName}_V${versionName}_${date}_${buildIndicator}.apk"
+            def apkName = "${appName}.apk"
+            output.outputFileName = apkName
+
         }
     }
+
+
 }
 
 dependencies {
