@@ -1,6 +1,6 @@
 ## GoogleMapPlaceSearchRN
 
-Shared the apk file(GMapPlace) in the mail. Kindly download the apk -> Select "Package Installer"
+Shared the apk file(GMapPlace) in the mail. Download -> Install in any android device -> Select "Package Installer"
 
 ## History
 If the history > 5, then "More from recent history" link will be appears.
